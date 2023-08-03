@@ -74,6 +74,12 @@
         .get-security-code:hover {
             background-color: #0056b3;
         }
+
+        /* New style for the input box */
+        .input-box {
+            width: 60%;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -110,19 +116,20 @@
                 <option value="summary">Summary</option>
             </select>
 
-            <label for="id">Id:</label>
-            <select id="id" name="cno"></select>
+            <label for="customer_alias">Customer Alias:</label>
+            <select id="customer_alias" name="calias"></select>
 
-            <label for="security_code">Security Code:</label>
-            <input type="text" id="security_code" name="security_code" placeholder="Enter security code" value="">
-
-            <input type="submit" value="Submit">
+            <!-- Input text box next to the dropdown -->
+            <label for="customer_number">Customer Number:</label>
+            <input type="text" id="customer_number" class="input-box" placeholder="Enter Customer Number">
+            
+            <input type="submit" value="Next">
         </form>
     </div>
 
     <script>
         const customerNumbers = {
-            "None":"",
+            "None": "",
             "M": 23741461,
             "A1": 23741671,
             "A3": 23741582,
@@ -140,15 +147,27 @@
         };
 
         window.onload = function() {
-            const idSelect = document.getElementById('id');
+            const aliasSelect = document.getElementById('customer_alias');
 
             for (const key in customerNumbers) {
                 const option = document.createElement('option');
                 option.value = key;
                 option.textContent = key;
-                idSelect.appendChild(option);
+                aliasSelect.appendChild(option);
             }
 
+            const customerNumberInput = document.getElementById('customer_number');
+            aliasSelect.addEventListener('change', function() {
+                console.log(customerNumbers[aliasSelect.value])
+                if (aliasSelect.value !== 'None') {
+                    customerNumberInput.value = customerNumbers[aliasSelect.value];
+                    customerNumberInput.disabled = true;
+                } else {
+                    customerNumberInput.value = '';
+                    customerNumberInput.disabled = false;
+                }
+            });
+            
             var today = new Date();
             var year = today.getFullYear();
             var month = today.getMonth() + 1;
