@@ -80,11 +80,16 @@
             width: 60%;
             display: inline-block;
         }
+
+        /* Center the Next button */
+        .center-button {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <h2>DPDC Input Form</h2>
+        <h2>DPDC Query Electric Bill</h2>
         <form action="https://dpdc.org.bd/site/service/ebill_gov" method="get" target="_blank">
             <label for="year">Year:</label>
             <select id="year" name="year">
@@ -117,13 +122,15 @@
             </select>
 
             <label for="customer_alias">Customer Alias:</label>
-            <select id="customer_alias" name="calias"></select>
+            <select id="customer_alias"></select>
 
             <!-- Input text box next to the dropdown -->
-            <label for="customer_number">Customer Number:</label>
-            <input type="text" id="customer_number" class="input-box" placeholder="Enter Customer Number">
-            
-            <input type="submit" value="Next">
+            <label for="cno">Customer Number:</label>
+            <input id="cno" name="cno" type="text" placeholder="Enter customer number" value="23741493">
+
+            <div class="center-button">
+                <input type="submit" value="Next">
+            </div>
         </form>
     </div>
 
@@ -156,18 +163,17 @@
                 aliasSelect.appendChild(option);
             }
 
-            const customerNumberInput = document.getElementById('customer_number');
+            const customerNumberInput = document.getElementById('cno');
             aliasSelect.addEventListener('change', function() {
-                console.log(customerNumbers[aliasSelect.value])
                 if (aliasSelect.value !== 'None') {
                     customerNumberInput.value = customerNumbers[aliasSelect.value];
-                    customerNumberInput.disabled = true;
+                    // customerNumberInput.disabled = true;
                 } else {
                     customerNumberInput.value = '';
-                    customerNumberInput.disabled = false;
+                    // customerNumberInput.disabled = false;
                 }
             });
-            
+
             var today = new Date();
             var year = today.getFullYear();
             var month = today.getMonth() + 1;
