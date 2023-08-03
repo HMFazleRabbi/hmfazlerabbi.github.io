@@ -76,7 +76,28 @@
         }
     </style>
     <script>
+        async function populateIdDropdown() {
+            try {
+                const response = await fetch('config.json'); // Replace with the correct path to your config.json
+                const data = await response.json();
+                const customerNumbers = data.customer_number;
+
+                const idSelect = document.getElementById('id');
+
+                for (const key in customerNumbers) {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = key;
+                    idSelect.appendChild(option);
+                }
+            } catch (error) {
+                console.error('Error loading customer numbers:', error);
+            }
+        }
+
         window.onload = function() {
+            populateIdDropdown();
+
             var today = new Date();
             var year = today.getFullYear();
             var month = today.getMonth() + 1;
@@ -127,16 +148,16 @@
                 <option value="summary">Summary</option>
             </select>
 
-            <label for="cno">Customer Number:</label>
-            <input type="text" id="cno" name="cno" placeholder="Enter customer number" value="23741493">
+            <label for="id">Id:</label>
+            <select id="id" name="cno"></select>
 
             <label for="security_code">Security Code:</label>
             <input type="text" id="security_code" name="security_code" placeholder="Enter security code" value="">
-            
-            <a href="https://dpdc.org.bd/site/service/ebill_gov" class="get-security-code" target="_blank">Get Security Code</a>
 
             <input type="submit" value="Submit">
         </form>
     </div>
+
+
 </body>
 </html>
