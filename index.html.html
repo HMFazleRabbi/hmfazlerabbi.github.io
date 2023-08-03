@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #171c28;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: #0e1320;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 350px;
+            color: #fff;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #2c3e50;
+            border-radius: 4px;
+            background-color: #34495e;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"]::placeholder {
+            color: #aaa;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 14px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .get-security-code {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .get-security-code:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+
+            if (month === 1) {
+                year--;
+                month = 12;
+            } else {
+                month--;
+            }
+
+            document.getElementById('year').value = year;
+            document.getElementById('month').value = (month < 10 ? '0' : '') + month;
+        };
+    </script>
+</head>
+<body>
+    <div class="card">
+        <h2>DPDC Input Form</h2>
+        <form action="https://dpdc.org.bd/site/service/ebill_gov" method="get" target="_blank">
+            <label for="year">Year:</label>
+            <select id="year" name="year">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+
+            <label for="month">Month:</label>
+            <select id="month" name="month">
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+
+            <label for="type">Type:</label>
+            <select id="type" name="btyp">
+                <option value="current">Ebill</option>
+                <option value="summary">Summary</option>
+            </select>
+
+            <label for="cno">Customer Number:</label>
+            <input type="text" id="cno" name="cno" placeholder="Enter customer number" value="23741493">
+
+            <label for="security_code">Security Code:</label>
+            <input type="text" id="security_code" name="security_code" placeholder="Enter security code" value="">
+            
+            <a href="https://dpdc.org.bd/site/service/ebill_gov" class="get-security-code" target="_blank">Get Security Code</a>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
