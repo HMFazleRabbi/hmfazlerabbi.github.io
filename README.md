@@ -39,3 +39,8 @@ The form is styled using CSS to create an appealing and centered layout. The car
 ---
 
 Feel free to customize this `Readme.md` to provide additional context or information specific to your project or use case.
+
+---
+Page View:
+![image](https://github.com/HMFazleRabbi/hmfazlerabbi.github.io/assets/55730363/519801d2-8a4c-4360-94b5-c85a30668363)
+
