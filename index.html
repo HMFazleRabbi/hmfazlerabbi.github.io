@@ -75,44 +75,6 @@
             background-color: #0056b3;
         }
     </style>
-    <script>
-        async function populateIdDropdown() {
-            try {
-                const response = await fetch('config.json'); // Replace with the correct path to your config.json
-                const data = await response.json();
-                const customerNumbers = data.customer_number;
-
-                const idSelect = document.getElementById('id');
-
-                for (const key in customerNumbers) {
-                    const option = document.createElement('option');
-                    option.value = key;
-                    option.textContent = key;
-                    idSelect.appendChild(option);
-                }
-            } catch (error) {
-                console.error('Error loading customer numbers:', error);
-            }
-        }
-
-        window.onload = function() {
-            populateIdDropdown();
-
-            var today = new Date();
-            var year = today.getFullYear();
-            var month = today.getMonth() + 1;
-
-            if (month === 1) {
-                year--;
-                month = 12;
-            } else {
-                month--;
-            }
-
-            document.getElementById('year').value = year;
-            document.getElementById('month').value = (month < 10 ? '0' : '') + month;
-        };
-    </script>
 </head>
 <body>
     <div class="card">
@@ -158,6 +120,49 @@
         </form>
     </div>
 
+    <script>
+        const customerNumbers = {
+            "None":"",
+            "M": 23741461,
+            "A1": 23741671,
+            "A3": 23741582,
+            "A5": 23741633,
+            "A7": 23741718,
+            "B1": 23741474,
+            "B3": 23741597,
+            "B5": 23741737,
+            "B7": 23741578,
+            "B9": 23741506,
+            "C1": 23741489,
+            "C3": 23741690,
+            "C5": 23741648,
+            "C7": 23741563
+        };
 
+        window.onload = function() {
+            const idSelect = document.getElementById('id');
+
+            for (const key in customerNumbers) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = key;
+                idSelect.appendChild(option);
+            }
+
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+
+            if (month === 1) {
+                year--;
+                month = 12;
+            } else {
+                month--;
+            }
+
+            document.getElementById('year').value = year;
+            document.getElementById('month').value = (month < 10 ? '0' : '') + month;
+        };
+    </script>
 </body>
 </html>
